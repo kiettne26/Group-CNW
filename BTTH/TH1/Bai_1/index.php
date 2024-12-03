@@ -56,7 +56,7 @@ include './CRUD/edit.php';
                 </td>
                 <td>
                     <a href="?delete_id=<?= $id ?>" class="icon" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
-                        <i class="fa-solid fa-trash" style="color: blue;"></i>
+                        <i class="me-2 fa-solid fa-trash" style="color: blue;"></i>
                     </a>
                 </td>
             </tr>
