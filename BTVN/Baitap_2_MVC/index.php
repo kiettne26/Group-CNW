@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý thành viên</title>
-    <link rel="stylesheet" href="./style.css" class="">
+    <title>Quản lý hoa</title>
 </head>
 <body>
     
 </body>
 </html>
 
-<?php
-    include "Model/DBConfig.php";
+<?php 
+    include "./models/DBConfig.php";
     $db = new Database;
     $db-> connect();
 
@@ -24,8 +23,11 @@
     }
 
     switch($controller){
-        case 'thanh-vien':{
-            require_once('controller/thanhvien/index.php');
+        case 'hoa':{
+            require_once('./controllers/controller.php');
         }
     }
 ?>
+
+<!-- admin chạy file index.php?controller=hoa&action=list --> 
+ <!-- member chạy file view/members/index.php -->
