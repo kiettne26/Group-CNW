@@ -36,7 +36,7 @@
         <div class="card px-4 py-4">
             <form method="POST" enctype="multipart/form-data">
                 <div class="card-body">
-                    <h3 class="text-center">Thêm tin tức</h3>
+                    <h3 class="text-center">Thêm tin tức hoa quả</h3>
 
                     <div class="form-group">
                         <input name="title" class="form-control" type="text" placeholder="Tiêu đề bài viết" required>
