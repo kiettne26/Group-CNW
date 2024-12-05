@@ -9,6 +9,7 @@ if (isset($_GET['action'])) {
 }
 
 switch ($action) {
+    // thêm
     case 'add': {
         if (isset($_POST['add'])) {
             $title = $_POST['title'];
@@ -35,12 +36,89 @@ switch ($action) {
         break;
     }
 
+    // sửa
+    case 'edit': {
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            $id = intval($_GET['id']); // Chuyển đổi sang kiểu số nguyên để đảm bảo an toàn
+            $dataID = $newsModel->getNewsById($id);
+            if (!$dataID) {
+                header('location: index.php?controller=news&action=dashboard');
+                exit();
+            }
+    
+            if (isset($_POST['edit'])) {
+                $title = trim($_POST['title']);
+                $content = trim($_POST['content']);
+    
+                $image = $dataID['image']; // Mặc định giữ ảnh cũ
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                    if (in_array($_FILES['image']['type'], $allowedTypes)) {
+                        $target_dir = "images/";
+                        $target_file = $target_dir . basename($_FILES['image']['name']);
+                        if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                            $image = $_FILES['image']['name'];
+                        } else {
+                            $thanhcong[] = 'Không thể tải ảnh lên';
+                        }
+                    } else {
+                        $thanhcong[] = 'Chỉ cho phép tải lên các tệp JPEG, PNG, GIF';
+                    }
+                }
+    
+                $category_id = isset($_POST['category_id']) ? intval($_POST['category_id']) : $dataID['category_id'];
+    
+                // Cập nhật dữ liệu
+                if ($newsModel->updateNews($id, $title, $content, $image, $category_id)) {
+                    header('location: index.php?controller=news&action=dashboard');
+                    exit();
+                } else {
+                    $thanhcong[] = 'Cập nhật thất bại';
+                }
+            }
+    
+            require_once('./views/admin/news/edit.php');
+        } else {
+            header('location: index.php?controller=news&action=dashboard');
+        }
+        break;
+    }
+    // xóa 
+    case 'delete': {
+        if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+            $id = intval($_GET['id']); // chuyển ID sang số nguyên
+    
+            $dataID = $newsModel->getNewsById($id);
+            if (!$dataID) {
+                $thanhcong[] = 'Bài viết không tồn tại hoặc đã bị xóa';
+                header('location: index.php?controller=news&action=dashboard');
+                exit();
+            }
+            if ($newsModel->deleteNews($id)) {
+                // xóa tệp ảnh
+                if (!empty($dataID['image']) && file_exists("images/" . $dataID['image'])) {
+                    unlink("images/" . $dataID['image']);
+                }
+                $thanhcong[] = 'Xóa bài viết thành công';
+                header('location: index.php?controller=news&action=dashboard');
+                exit();
+            } else {
+                $thanhcong[] = 'Xóa bài viết thất bại';
+                header('location: index.php?controller=news&action=dashboard');
+                exit();
+            }
+        } else {
+            $thanhcong[] = 'ID không hợp lệ';
+            header('location: index.php?controller=news&action=dashboard');
+            exit();
+        }
+        break;
+    }
     case 'dashboard': {
         $data = $newsModel->getAllNews();
         require_once('./views/admin/news/dashboard.php');
         break;
     }
-
     default: {
         $data = $newsModel->getAllNews();
         require_once('./views/admin/news/dashboard.php');

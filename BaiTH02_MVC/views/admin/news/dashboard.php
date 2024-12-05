@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
     <div class="container mt-5">
-        <h1 class="text-center">Quản lý tin tức</h1>
+        <h1 class="text-center">Quản lý tin tức hoa quả</h1>
         <div class="mb-3 text-end">
             <a href="index.php?controller=news&action=add" class="btn btn-success">
                 <i class="fa-solid fa-plus"></i> Thêm mới
