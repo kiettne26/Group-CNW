@@ -1,5 +1,5 @@
 <?php 
-require_once '../../models/Database.php';
+ require_once '../../models/Database.php';
 
 $database = new Database();
 $pdo = $database->connect(); 
@@ -59,11 +59,12 @@ if (!$newsItem) {
             </div>
         </nav>
     </header>
+   
 
     <main class="container mt-5">
         <div class="row mb-5">
             <div class="col-sm-4">
-                <img src="images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($newsItem['title']); ?>">
+            <img src="/BaiTH02_MVC/views/news/images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($newsItem['title']); ?>">
             </div>
             <div class="col-sm-8">
                 <h5 class="card-title mb-2"><?php echo htmlspecialchars($newsItem['title']); ?></h5>

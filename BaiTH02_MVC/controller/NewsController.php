@@ -28,7 +28,18 @@ class NewsController {
         }
         include "views/news/detail.php";
     }
-
+    // Phương thức tìm kiếm bài viết theo nội dung
+    public function searchByContent($content) {
+        $newsItems = $this->newsModel->searchNewsByContent($content);
+        if (!$newsItems) {
+            // Xử lý khi không tìm thấy bài viết
+            echo "Không tìm thấy bài viết với nội dung: $content";
+            return;
+        }
+        // Nếu tìm thấy, hiển thị chi tiết bài viết
+        include "views/news/search_resutl.php"; // File để hiển thị kết quả tìm kiếm
+    }
+    
     
 }
 

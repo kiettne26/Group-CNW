@@ -149,12 +149,16 @@
                 <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Đăng Nhập</a></li>
         </nav>
+        <!-- tìm kiếm theo nội dung -->
         <div class="search-box">
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Nhập nội dung tìm kiếm">
-                <button class="btn btn-outline-dark" type="button">Tìm</button>
-            </form>
-        </div>
+    <form class="d-flex" action="search.php" method="POST">
+        <input class="form-control me-2" type="text" name="query" placeholder="Nhập ID để tìm kiếm">
+        <button class="btn btn-outline-dark" type="submit">Tìm</button>
+    </form>
+</div>
+
+
+
     </header>
  <!-- Carousel -->
  <div id="demo" class="carousel slide" data-bs-ride="carousel">
@@ -184,9 +188,21 @@
         </button>
     </div>
 
+    <?php
+// index.php
+// Sử dụng require_once để đảm bảo rằng tệp chỉ được bao gồm một lần
+require_once "./models/Database.php";
+require_once "./models/News.php";
+
+
+// Khởi tạo kết nối
+$db = new Database();
+$pdo = $db->connect();
+?>
+
     <!-- Danh sách sản phẩm -->
     <main class="container mt-5">
-        <?php include '../../views/news/list.php'; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/BaiTH02_MVC/views/news/list.php';?>
     </main>
 
     <!-- Footer -->
