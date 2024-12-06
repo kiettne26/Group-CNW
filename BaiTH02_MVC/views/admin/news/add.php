@@ -29,6 +29,14 @@
             height: 50px;
             border-radius: 10px;
         }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-group a,
+        .button-group button {
+            width: 48%;
+        }
     </style>
 </head>
 <body>
@@ -39,19 +47,22 @@
                     <h3 class="text-center">Thêm tin tức hoa quả</h3>
 
                     <div class="form-group">
-                        <input name="title" class="form-control" type="text" placeholder="Tiêu đề bài viết" required>
+                        <input name="title" class="form-control" type="text" placeholder="Tiêu đề " required>
                     </div>
 
                     <div class="form-group">
-                        <textarea name="content" class="form-control" rows="4" placeholder="Nội dung bài viết" required></textarea>
+                        <textarea name="content" class="form-control" rows="4" placeholder="Nội dung" required></textarea>
                     </div>
 
                     <div class="form-group">
                         <input name="image" class="form-control" type="file" required>
                     </div>
 
-                    <a href="index.php?controller=news&action=dashboard" class="btn btn-primary btn-block confirm-button mt-3">Hủy</a>
-                    <button class="btn btn-primary btn-block confirm-button mt-3" type="submit" name="add">Thêm mới</button>
+                    <!-- Nút Hủy bên phải và Nút Thêm mới bên trái -->
+                    <div class="d-flex justify-content-between mt-3">
+                        <button class="btn btn-primary confirm-button" type="submit" name="add">Thêm mới</button>
+                        <a href="index.php?controller=news&action=dashboard" class="btn btn-primary confirm-button ms-auto">Hủy</a>
+                    </div>
                 </div>
             </form>
 
