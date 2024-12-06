@@ -14,6 +14,7 @@
 <?php
 include "./models/Database.php";
 include "./models/News.php";
+
 $db = new Database;
 $db->connect(); // Kết nối cơ sở dữ liệu
 

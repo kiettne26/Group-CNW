@@ -41,14 +41,14 @@ if (!$newsItem) {
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Cửa hàng rau củ quả</a>
+                <a class="navbar-brand" href="#">Tin tức rau củ quả</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./">Trang chủ</a>
+                            <a class="nav-link active" aria-current="page" href="/BaiTH02_MVC">Trang chủ</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -63,7 +63,7 @@ if (!$newsItem) {
     <main class="container mt-5">
         <div class="row mb-5">
             <div class="col-sm-4">
-                <img src="images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($newsItem['title']); ?>">
+                <img src="/BaiTH02_MVC/images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($newsItem['title']); ?>">
             </div>
             <div class="col-sm-8">
                 <h5 class="card-title mb-2"><?php echo htmlspecialchars($newsItem['title']); ?></h5>
@@ -80,7 +80,7 @@ if (!$newsItem) {
     </main>
 
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary border-2" style="height:80px">
-        <h4 class="text-center text-uppercase fw-bold">Cửa hàng rau củ quả</h4>
+        <h4 class="text-center text-uppercase fw-bold">Tin tức rau củ quả</h4>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -132,10 +132,53 @@
                 height: 180px; 
             }
         }
+        .card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Đảm bảo hình ảnh không bị lòi ra ngoài */
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-img-top {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                display: block; /* Đảm bảo hình ảnh không bị căn chỉnh lạ */
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+                margin-bottom: 10px;
+            }
+
+            .card-text {
+                font-size: 0.9rem;
+                color: #555;
+                margin-bottom: 15px; /* Tăng khoảng cách dưới đoạn văn bản */
+            }
+
+            .btn-primary {
+                background-color: #0078ff;
+                border: none;
+                display: block; /* Đảm bảo nút không bị ảnh hưởng bởi layout */
+            }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+
+
     </style>
 </head>
 <body>
-
     <!-- Header -->
     <header class="header">
         <a href="#" class="d-flex align-items-center">
@@ -143,59 +186,54 @@
         </a>
         <nav>
             <ul class="nav">
-            <li class="nav-item"><a class="nav-link" href="#">Trang Chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Trang Chủ</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Giới Thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=login">Đăng Nhập</a></li>
+            </ul>
         </nav>
         <div class="search-box">
             <form class="d-flex" method="GET">
                 <input type="hidden" name="controller" value="news">
                 <input class="form-control me-2" type="text" placeholder="Nhập nội dung tìm kiếm" name="tukhoa">
-                <button class="btn btn-outline-dark" type="submit">Tìm kiếm</button>
+                <button class="btn btn-outline-dark ms-2" type="submit">Tìm kiếm</button>
                 <input type="hidden" name="action" value="tim-kiem">
             </form>
         </div>
     </header>
- <!-- Carousel -->
- <div id="demo" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-        </div>
 
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="images/banner_2.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="images/banner_1.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="images/banner_3.jpg" class="d-block w-100">
-            </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    </div>
-
-    <!-- Danh sách sản phẩm -->
+    <!-- Main -->
     <main class="container mt-5">
-        <?php include './views/news/list.php'; ?>
+        <div class="row g-4">
+        <?php if (!empty($data_Search)): ?>
+    <?php foreach ($data_Search as $newsItem): ?>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-light">
+                <a href="views/news/detail.php?id=<?php echo $newsItem['id']; ?>">
+                    <img src="/BaiTH02_MVC/images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($newsItem['title']); ?>" style="height: 200px; object-fit: cover;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo htmlspecialchars($newsItem['title']); ?></h5>
+                    <p class="card-text mb-2">
+                        <small class="text-muted">
+                            Ngày tạo: <?php echo date("d-m-Y H:i:s", strtotime($newsItem['created_at'])); ?>
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>Không tìm thấy kết quả nào cho từ khóa "<?php echo htmlspecialchars($_GET['tukhoa']); ?>".</p>
+<?php endif; ?>
+</div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 Tin tức Hoa Quả. Mọi quyền được bảo lưu.</p>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

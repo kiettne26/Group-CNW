@@ -97,6 +97,10 @@ switch ($action) {
                 exit();
             }
             if ($newsModel->deleteNews($id)) {
+                // xóa tệp ảnh
+                if (!empty($dataID['image']) && file_exists("images/" . $dataID['image'])) {
+                    unlink("images/" . $dataID['image']);
+                }
                 $thanhcong[] = 'Xóa bài viết thành công';
                 header('location: index.php?controller=news&action=dashboard');
                 exit();
@@ -124,7 +128,6 @@ switch ($action) {
             if ($user) {
                 // Đăng nhập thành công
                 $_SESSION['user'] = $user;
-                // header('Location: index.php?controller=news&action=dashboard');
                 header('Location: index.php?controller=news&action=index');
                 exit;
             } else {
@@ -134,12 +137,19 @@ switch ($action) {
         require_once './views/admin/login.php';
         break;
     }
-    case 'index': {
-        require_once('./views/admin/news/index.php');
+    
+    case 'tim-kiem': {
+        if (isset($_GET['tukhoa']) && !empty($_GET['tukhoa'])) {
+            $key = trim($_GET['tukhoa']);
+            $data_Search = $newsModel->Search($key);
+        } else {
+            $data_Search = [];
+        }
+        require_once('./views/home/index_Search.php');
         break;
     }
     
-    
+
     case 'dashboard': {
         $data = $newsModel->getAllNews();
         require_once('./views/admin/news/dashboard.php');
@@ -147,7 +157,7 @@ switch ($action) {
     }
     default: {
         $data = $newsModel->getAllNews();
-        require_once('./views/admin/news/dashboard.php');
+        require_once('./views/admin/news/index.php');
         break;
     }
 }

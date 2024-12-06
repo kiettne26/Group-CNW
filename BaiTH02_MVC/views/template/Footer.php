@@ -49,5 +49,5 @@
     
     <!-- Footer -->
     <footer>
-        <p>CỬA HÀNG HOA QUA NỜ SÁU</p>
+        <p>Tin tức HOA QUA NỜ SÁU</p>
     </footer>
