@@ -12,8 +12,7 @@ $newsModel = new News($pdo);
 // Lấy giá trị từ form
 $query = isset($_POST['query']) ? intval($_POST['query']) : 0;
 
-// Tìm kiếm sản phẩm theo ID
-$newsItem = $newsModel->findById($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +28,7 @@ $newsItem = $newsModel->findById($query);
         <h1>Kết quả tìm kiếm</h1>
         <?php if ($newsItem): ?>
             <div class="card">
-                <img src="images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($newsItem['title']); ?>">
+            <img src="images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($newsItem['title']); ?>">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo htmlspecialchars($newsItem['title']); ?></h5>
                     <p class="card-text"><?php echo htmlspecialchars($newsItem['content']); ?></p>

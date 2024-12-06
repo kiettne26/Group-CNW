@@ -53,29 +53,10 @@ class News {
         return $stmt->execute([$id]);
     }
 
-<<<<<<< HEAD
-    public function searchNewsByContent($query) {
-        // Giả sử bạn sử dụng PDO để truy vấn database
-        $stmt = $this->db->connect()->prepare("SELECT * FROM news WHERE title LIKE :query OR content LIKE :query");
-        $stmt->execute(['query' => '%' . $query . '%']);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    // Phương thức tìm kiếm theo ID
-    public function findById($id) {
-        $sql = "SELECT id, title, content, image, created_at FROM news WHERE id = :id";
-        $stmt = $this->db->connect()->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    
 }
 
 
 
 
 ?>
-=======
->>>>>>> 70d29ccea7e0079dbd546503c489c78af3d973be
+
