@@ -128,7 +128,7 @@ switch ($action) {
             if ($user) {
                 // Đăng nhập thành công
                 $_SESSION['user'] = $user;
-                header('Location: index.php?controller=news&action=dashboard');
+                header('Location: index.php?controller=news&action=index');
                 exit;
             } else {
                 $error = "Sai tên đăng nhập hoặc mật khẩu.";
@@ -147,7 +147,7 @@ switch ($action) {
     }
     default: {
         $data = $newsModel->getAllNews();
-        require_once('./views/admin/news/dashboard.php');
+        require_once('./views/admin/news/index.php');
         break;
     }
 }

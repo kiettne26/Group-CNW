@@ -147,7 +147,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">Giới Thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Đăng Nhập</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=login">Đăng Nhập</a></li>
         </nav>
         <div class="search-box">
             <form class="d-flex">
@@ -166,13 +166,6 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-            <img src="/BaiTH02_MVC/images/banner_2.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="/BaiTH02_MVC/images/banner_1.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="/BaiTH02_MVC/images/banner_3.jpg" class="d-block w-100">
                 <img src="images/banner_2.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item">
@@ -193,12 +186,12 @@
 
     <!-- Danh sách sản phẩm -->
     <main class="container mt-5">
-        <?php include '../../views/news/list.php'; ?>
+        <?php include './views/news/list.php'; ?>
     </main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Cửa hàng Hoa Quả. Mọi quyền được bảo lưu.</p>
+        <p>&copy; 2024 Tin tức Hoa Quả. Mọi quyền được bảo lưu.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
