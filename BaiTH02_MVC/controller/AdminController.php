@@ -1,6 +1,4 @@
 <?php
-require_once './models/User.php';
-
 $newsModel = new News();
 $thanhcong = array();
 
@@ -97,6 +95,10 @@ switch ($action) {
                 exit();
             }
             if ($newsModel->deleteNews($id)) {
+                // xóa tệp ảnh
+                if (!empty($dataID['image']) && file_exists("images/" . $dataID['image'])) {
+                    unlink("images/" . $dataID['image']);
+                }
                 $thanhcong[] = 'Xóa bài viết thành công';
                 header('location: index.php?controller=news&action=dashboard');
                 exit();
@@ -112,34 +114,6 @@ switch ($action) {
         }
         break;
     }
-    // đăng nhập
-    case 'login': {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            
-            $userModel = new User();
-            $user = $userModel->login($username, $password);
-    
-            if ($user) {
-                // Đăng nhập thành công
-                $_SESSION['user'] = $user;
-                // header('Location: index.php?controller=news&action=dashboard');
-                header('Location: index.php?controller=news&action=index');
-                exit;
-            } else {
-                $error = "Sai tên đăng nhập hoặc mật khẩu.";
-            }
-        }
-        require_once './views/admin/login.php';
-        break;
-    }
-    case 'index': {
-        require_once('./views/admin/news/index.php');
-        break;
-    }
-    
-    
     case 'dashboard': {
         $data = $newsModel->getAllNews();
         require_once('./views/admin/news/dashboard.php');
