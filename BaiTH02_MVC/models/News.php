@@ -53,6 +53,7 @@ class News {
         return $stmt->execute([$id]);
     }
 
+<<<<<<< HEAD
     public function searchNewsByContent($query) {
         // Giả sử bạn sử dụng PDO để truy vấn database
         $stmt = $this->db->connect()->prepare("SELECT * FROM news WHERE title LIKE :query OR content LIKE :query");
@@ -76,3 +77,5 @@ class News {
 
 
 ?>
+=======
+>>>>>>> 70d29ccea7e0079dbd546503c489c78af3d973be

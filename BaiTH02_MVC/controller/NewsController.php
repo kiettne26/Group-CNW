@@ -28,6 +28,7 @@ class NewsController {
         }
         include "views/news/detail.php";
     }
+<<<<<<< HEAD
     // Phương thức tìm kiếm bài viết theo nội dung
     public function searchByContent($content) {
         $newsItems = $this->newsModel->searchNewsByContent($content);
@@ -49,3 +50,6 @@ class NewsController {
    
 
 ?>
+=======
+
+>>>>>>> 70d29ccea7e0079dbd546503c489c78af3d973be
