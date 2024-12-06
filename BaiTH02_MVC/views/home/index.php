@@ -147,7 +147,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">Giới Thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Đăng Nhập</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?controller=news&action=login">Đăng Nhập</a></li>
         </nav>
         <div class="search-box">
             <form class="d-flex">

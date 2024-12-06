@@ -97,10 +97,6 @@ switch ($action) {
                 exit();
             }
             if ($newsModel->deleteNews($id)) {
-                // xóa tệp ảnh
-                if (!empty($dataID['image']) && file_exists("images/" . $dataID['image'])) {
-                    unlink("images/" . $dataID['image']);
-                }
                 $thanhcong[] = 'Xóa bài viết thành công';
                 header('location: index.php?controller=news&action=dashboard');
                 exit();
@@ -118,62 +114,42 @@ switch ($action) {
     }
     // đăng nhập
     case 'login': {
-        session_start();
-
-// Kiểm tra nếu người dùng đã gửi thông tin đăng nhập
-switch ($action) {
-    case 'login': {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'] ?? '';
-            $password = $_POST['password'] ?? '';
-    
-            // Tạo đối tượng User để xử lý đăng nhập
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            
             $userModel = new User();
             $user = $userModel->login($username, $password);
     
             if ($user) {
-                // Đăng nhập thành công, lưu thông tin vào session
+                // Đăng nhập thành công
                 $_SESSION['user'] = $user;
-    
-                // Chuyển hướng đến trang dashboard
-                header('Location: index.php?controller=news&action=dashboard');
+                // header('Location: index.php?controller=news&action=dashboard');
+                header('Location: index.php?controller=news&action=index');
                 exit;
             } else {
-                // Sai tên đăng nhập hoặc mật khẩu
                 $error = "Sai tên đăng nhập hoặc mật khẩu.";
             }
         }
-    
-        // Hiển thị form đăng nhập
         require_once './views/admin/login.php';
         break;
     }
-
+    case 'index': {
+        require_once('./views/admin/news/index.php');
+        break;
+    }
+    
+    
     case 'dashboard': {
-        // Kiểm tra người dùng đã đăng nhập chưa
-        if (!isset($_SESSION['user'])) {
-            // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
-            header('Location: index.php?controller=admin&action=login');
-            exit;
-        }
-    
-        // Tải danh sách tin tức nếu người dùng đã đăng nhập
-        $newsModel = new News();
         $data = $newsModel->getAllNews();
-    
-        // Hiển thị dashboard
         require_once('./views/admin/news/dashboard.php');
         break;
     }
-
     default: {
-        // Nếu không có action nào khác, hiển thị dashboard mặc định
-        $newsModel = new News();
         $data = $newsModel->getAllNews();
         require_once('./views/admin/news/dashboard.php');
         break;
     }
 }
-    }
 
 ?>
