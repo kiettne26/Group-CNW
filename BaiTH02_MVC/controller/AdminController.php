@@ -138,8 +138,18 @@ switch ($action) {
         break;
     }
     
+    case 'tim-kiem': {
+        if (isset($_GET['tukhoa']) && !empty($_GET['tukhoa'])) {
+            $key = trim($_GET['tukhoa']);
+            $data_Search = $newsModel->Search($key);
+        } else {
+            $data_Search = [];
+        }
+        require_once('./views/home/index_Search.php');
+        break;
+    }
     
-    
+
     case 'dashboard': {
         $data = $newsModel->getAllNews();
         require_once('./views/admin/news/dashboard.php');

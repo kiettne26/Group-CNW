@@ -53,6 +53,14 @@ class News {
         return $stmt->execute([$id]);
     }
 
+    // tìm kiếm 
+    public function Search($key) {
+        $sql = "SELECT * FROM news WHERE title LIKE :key ORDER BY id DESC";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':key', "%$key%", PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 } 
-
 ?>

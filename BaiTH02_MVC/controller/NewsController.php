@@ -29,7 +29,5 @@ class NewsController {
         include "views/news/detail.php";
     }
 
-
-
 }
 ?>

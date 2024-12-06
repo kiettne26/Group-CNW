@@ -43,6 +43,7 @@ class HomeController {
         }
     }
 
+    
     // Tìm kiếm bài viết theo từ khóa
     public function search() {
         try {
