@@ -166,13 +166,20 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/BaiTH02_MVC/images/banner_2.jpg" class="d-block w-100">
+            <img src="/BaiTH02_MVC/images/banner_2.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item">
                 <img src="/BaiTH02_MVC/images/banner_1.jpg" class="d-block w-100">
             </div>
             <div class="carousel-item">
                 <img src="/BaiTH02_MVC/images/banner_3.jpg" class="d-block w-100">
+                <img src="images/banner_2.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="images/banner_1.jpg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="images/banner_3.jpg" class="d-block w-100">
             </div>
         </div>
 
@@ -186,7 +193,7 @@
 
     <!-- Danh sách sản phẩm -->
     <main class="container mt-5">
-        <?php include './views/news/list.php'; ?>
+        <?php include '../../views/news/list.php'; ?>
     </main>
 
     <!-- Footer -->

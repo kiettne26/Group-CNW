@@ -1,5 +1,5 @@
 <?php
-require_once './models/Database.php';
+require_once '../../models/Database.php';
 
 // Tạo kết nối Database
 $database = new Database();
@@ -9,7 +9,7 @@ $pdo = $database->connect();
 $sql = "SELECT id, title, image, created_at FROM news";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$news = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$news = $stmt->fetchAll(PDO::FETCH_ASSOC); // Đổi biến $fruits thành $news cho thống nhất
 ?>
 
 <h1 class="mb-4">Danh sách Sản phẩm</h1>
@@ -19,8 +19,8 @@ $news = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm border-light">
                     <!-- Thêm thẻ <a> quanh hình ảnh để khi nhấn vào hình ảnh sẽ chuyển đến chi tiết sản phẩm -->
-                    <a href="news/detail.php?id=<?php echo $newsItem['id']; ?>">
-                    <img src="images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($newsItem['title']); ?>" style="height: 200px; object-fit: cover;">
+                    <a href="../news/detail.php?id=<?php echo $newsItem['id']; ?>">
+                        <img src="/BaiTH02_MVC/images/<?php echo htmlspecialchars($newsItem['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($newsItem['title']); ?>" style="height: 200px; object-fit: cover;">
                     </a>
                     <div class="card-body">
                         <!-- Hiển thị tiêu đề sản phẩm -->
@@ -84,4 +84,9 @@ $news = $stmt->fetchAll(PDO::FETCH_ASSOC);
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+
+
+
+
 </style>

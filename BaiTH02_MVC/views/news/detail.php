@@ -1,5 +1,6 @@
 <?php 
-require_once './models/Database.php';
+require_once '../../models/Database.php';
+
 $database = new Database();
 $pdo = $database->connect(); 
 
@@ -16,7 +17,7 @@ $sql = "SELECT
         WHERE id = :id";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $id, PDO::PARAM_INT); 
+$stmt->bindParam(':id', $id, PDO::PARAM_INT); // Chỉnh sửa ở đây
 $stmt->execute();
 
 $newsItem = $stmt->fetch(PDO::FETCH_ASSOC);
