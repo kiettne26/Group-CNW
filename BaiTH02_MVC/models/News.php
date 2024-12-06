@@ -53,10 +53,3 @@ class News {
         return $stmt->execute([$id]);
     }
 
-    
-}
-
-
-
-
-?>
