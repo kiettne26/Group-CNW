@@ -52,5 +52,4 @@ class News {
         $stmt = $this->db->connect()->prepare($sql);
         return $stmt->execute([$id]);
     }
-}
-?>
+
